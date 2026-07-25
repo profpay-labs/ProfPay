@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- ProfPay API -->
+    <domain-config>
+        <domain includeSubdomains="true">api.profpay-services.com</domain>
+        <domain includeSubdomains="true">profpay-services.com</domain>
+        <pin-set expiration="2027-07-01">
+            <pin digest="SHA-256">CK1Mp5hVBN7kGViots8TwMypArWsCLW6qknKdov0Mlo=</pin>
+            <pin digest="SHA-256">LoMHBotttiDko50Gi13uXW71eIy7LAttI+rYT8wXF4w=</pin>
+        </pin-set>
+    </domain-config>
+
+    <!-- Sentry -->
+    <domain-config>
+        <domain includeSubdomains="true">sentry.profpay-services.com</domain>
+        <pin-set expiration="2027-07-01">
+            <pin digest="SHA-256">sDWnGJvKEdLs8ESkX5lKRa+JGz9Fx2rG9OQYGz3jt7o=</pin>
+            <pin digest="SHA-256">nWN7PSep5XDQdge5zK24CnCRXHr3KvzhKEGxsdqCX9E=</pin>
+        </pin-set>
+    </domain-config>
+
+    <!-- Binance API -->
+    <domain-config>
+        <domain includeSubdomains="true">api.binance.com</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="user" />
+            <certificates src="system" />
+        </trust-anchors>
+    </debug-overrides>
+</network-security-config>

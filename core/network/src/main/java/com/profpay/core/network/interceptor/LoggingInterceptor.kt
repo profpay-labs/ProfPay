@@ -15,7 +15,6 @@ import javax.inject.Singleton
 class LoggingInterceptor @Inject constructor() : Interceptor {
 
     private val delegate = HttpLoggingInterceptor { message ->
-        Log.d(TAG, sanitize(message))
     }.apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

@@ -76,7 +76,6 @@ class WalletAddedViewModel @Inject constructor(
 
                 is AppState.Registered -> {
                     // Уже зарегистрирован: добавляем дополнительный кошелёк
-                    Log.d(TAG, "User registered: userId=${appState.userId}, wallets=${appState.walletsCount}")
                     performAddWallet(addressesWithKeysForM)
                 }
             }
@@ -87,7 +86,6 @@ class WalletAddedViewModel @Inject constructor(
             _uiEvent.emit(WalletUiEvent.NavigateToHome)
         } catch (e: Exception) {
             Sentry.captureException(e)
-            Log.e(TAG, "Wallet creation failed", e)
             _uiEvent.emit(WalletUiEvent.ShowError(e.toUserMessage()))
         }
     }
@@ -248,7 +246,6 @@ class WalletAddedViewModel @Inject constructor(
             _uiEvent.emit(WalletUiEvent.NavigateToHome)
         } catch (e: Exception) {
             Sentry.captureException(e)
-            Log.e(TAG, "Recovery failed", e)
             _uiEvent.emit(WalletUiEvent.ShowError(e.toUserMessage()))
         }
     }

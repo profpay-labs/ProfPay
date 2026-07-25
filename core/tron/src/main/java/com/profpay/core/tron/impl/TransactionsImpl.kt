@@ -198,7 +198,6 @@ class TransactionsImpl @Inject constructor() : TronTransactionsApi {
                 val energyFee = getEnergyFee(wrapper)
                 val energyInTrx = energyRequired.toBigInteger() * energyFee
 
-                Log.d("TransactionsImpl", "Energy required: $energyRequired, energy fee: $energyFee, energy in trx: $energyInTrx")
 
                 EnergyEstimate(
                     energy = energyRequired,

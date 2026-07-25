@@ -12,6 +12,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.CertificatePinner
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Converter
@@ -27,6 +28,30 @@ object NetworkModule {
     private const val CONNECT_TIMEOUT_SECONDS = 30L
     private const val READ_TIMEOUT_SECONDS = 30L
     private const val WRITE_TIMEOUT_SECONDS = 30L
+
+    /**
+     * Certificate Pinner для production.
+     * Дополнительная защита помимо Network Security Config.
+     */
+    private val certificatePinner: CertificatePinner = CertificatePinner.Builder()
+        // ProfPay API
+        .add(
+            "api.profpay-services.com",
+            "sha256/CK1Mp5hVBN7kGViots8TwMypArWsCLW6qknKdov0Mlo=",
+            "sha256/LoMHBotttiDko50Gi13uXW71eIy7LAttI+rYT8wXF4w="
+        )
+        .add(
+            "*.profpay-services.com",
+            "sha256/CK1Mp5hVBN7kGViots8TwMypArWsCLW6qknKdov0Mlo=",
+            "sha256/LoMHBotttiDko50Gi13uXW71eIy7LAttI+rYT8wXF4w="
+        )
+        // Sentry
+        .add(
+            "sentry.profpay-services.com",
+            "sha256/sDWnGJvKEdLs8ESkX5lKRa+JGz9Fx2rG9OQYGz3jt7o=",
+            "sha256/nWN7PSep5XDQdge5zK24CnCRXHr3KvzhKEGxsdqCX9E="
+        )
+        .build()
 
     @Provides
     @Singleton
@@ -59,6 +84,9 @@ object NetworkModule {
         .apply {
             if (BuildConfig.DEBUG_LOGGING) {
                 addInterceptor(loggingInterceptor)
+            } else {
+                // Certificate pinning только в release
+                certificatePinner(certificatePinner)
             }
         }
         .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -79,6 +107,8 @@ object NetworkModule {
         .apply {
             if (BuildConfig.DEBUG_LOGGING) {
                 addInterceptor(loggingInterceptor)
+            } else {
+                certificatePinner(certificatePinner)
             }
         }
         .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)

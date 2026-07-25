@@ -32,7 +32,7 @@ class App : Application(), Configuration.Provider {
 
     private fun initializeSentry() {
         SentryAndroid.init(this) { options ->
-            options.tracesSampleRate = 1.0
+            options.tracesSampleRate = 0.3
             options.isEnableAutoSessionTracking = true
             options.isEnableUserInteractionTracing = true
             options.isEnableUserInteractionBreadcrumbs = true
