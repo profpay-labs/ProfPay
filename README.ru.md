@@ -1,68 +1,161 @@
 # ProfPay Wallet
 
-## ⚠️ Отказ от ответственности
+Безопасный криптовалютный кошелёк для сети TRON с поддержкой USDT (TRC20) и TRX.
 
-**Проект находится в активной разработке.**
-Он открыт для публичного тестирования, однако многие функции и компоненты всё ещё находятся в разработке, и обновления будут выпускаться регулярно.
-Мы поощряем участие в проекте и ответственное сообщение об ошибках для улучшения проекта.
+## Язык
 
-## 📜 Лицензия
+- [English](README.md)
+- [Русский](README.ru.md)
 
-Этот код является собственностью и не предназначен для общего использования.
+## Дисклеймер
 
-Он предоставляется **только для аудита и внесения вкладов**.
-Полные условия см. в [LICENSE](./LICENSE).
+Проект находится в активной разработке. Хотя он открыт для публичного тестирования, многие функции ещё дорабатываются. Мы приветствуем вклад в проект и ответственные сообщения об ошибках.
 
-## 💼 О проекте
+## Лицензия
 
-**ProfPay Wallet** — это криптовалютный кошелек, предназначенный для безопасных транзакций с использованием **USDT (TRC20)** и **TRX**.
-Кошелек оснащен системой смарт-контрактов для обработки транзакций USDT TRC20, обеспечивая передовые функции безопасности для защиты средств пользователей.
+Код является проприетарным и не предназначен для публичного использования. Он предоставляется только для аудита и участия в разработке. Подробности в файле [LICENSE](./LICENSE).
 
-Основные особенности:
-- **Основной адрес и шесть дополнительных слотов**: Кошелек имеет один основной адрес и шесть дополнительных слотов, которые действуют как защитные барьеры от грязной валюты. Если на слот поступает грязная валюта, её можно заменить на чистые средства.
-- **Поддержка нескольких валют**: В данный момент кошелек поддерживает **USDT** и **TRX**, с планами по добавлению новых криптовалют в будущем.
+## О проекте
 
-## ⚙️ Установка и сборка (через Docker)
+ProfPay — криптовалютный кошелёк для безопасных транзакций с использованием USDT (TRC20) и TRX в сети TRON. Кошелёк оснащён системой смарт-контрактов для обработки транзакций USDT TRC20 с продвинутыми функциями безопасности.
 
-### 🧩 1. Создание Keystore (JKS-файла)
+## Возможности
 
-Для сборки **release APK** необходимо иметь **Java Keystore (JKS)** — файл, используемый для подписи Android-приложения.
-Если у вас его ещё нет, создайте его с помощью команды:
+- Мульти-адресная система с основным адресом и 6 дополнительными слотами для защиты средств
+- AML-защита — слоты служат барьером против грязной валюты
+- Поддержка USDT (TRC20) и TRX
+- Биометрическая аутентификация (отпечаток пальца, Face ID)
+- PIN-код для защиты доступа
+- Push-уведомления о транзакциях в реальном времени
+- Тёмная и светлая тема с автоопределением системной темы
+- Экспорт истории транзакций в PDF
 
-```bash
-keytool -genkeypair -v \
-  -keystore profpay-release-key.jks \
-  -keyalg RSA \
-  -keysize 2048 \
-  -validity 10000 \
-  -alias profpay
+## Технологии
+
+- Kotlin 2.3.x
+- Android SDK Target 35, Compile 36
+- Java 17, Gradle 8.11.1
+- Jetpack Compose, Navigation Compose, ViewModel, Room, DataStore, WorkManager
+- Hilt 2.59.2, KSP 2.3.6
+- Kotlin Coroutines, Flow, StateFlow
+- OkHttp, Kotlinx Serialization, Protobuf
+- Sentry, Bugfender, SonarQube
+- Pushy, Detekt, KtLint
+
+## Архитектура
+
+Проект построен на Clean Architecture с многомодульной структурой.
+
+## Структура проекта
+```
+ProfPayWallet/
+├── app/
+│   ├── ui/
+│   ├── navigation/
+│   └── di/
+├── core/
+│   ├── common/
+│   ├── crypto/
+│   ├── database/
+│   ├── network/
+│   ├── security/
+│   ├── tron/
+│   └── ui/
+├── data/
+│   ├── aml/
+│   ├── config/
+│   ├── contract/
+│   ├── market/
+│   ├── transfer/
+│   ├── user/
+│   └── wallet/
+├── domain/
+│   ├── aml/
+│   ├── config/
+│   ├── contract/
+│   ├── market/
+│   ├── security/
+│   ├── transfer/
+│   ├── user/
+│   └── wallet/
+├── feature/
+│   └── home/
+├── docker/
+├── keystore/
+├── walletcore/
+├── build.gradle.kts
+├── settings.gradle.kts
+└── LICENSE
 ```
 
-### 🧩 2. Создание конфигурационного файла
-Перед сборкой создайте `.env` файл в корне проекта:
+## Требования
 
+- Android 10+ (API 29+)
+- ~50 МБ памяти
+- Интернет-соединение
+
+## Сборка и установка
+
+### Предварительные требования
+
+- Установленный Docker
+- Git
+---
+### Быстрая сборка
+
+Клонируй и запусти:
 ```bash
-KEYSTORE_FILE=profpay-release-key.jks
-KEYSTORE_PASSWORD=password_from_keystore
+git clone <repository-url>
+cd ProfPayWallet
+chmod +x docker/build.sh
+./docker/build.sh
+```
+---
+APK будет в `./build-output/app-release.apk`
+
+### Генерация Keystore
+```bash
+keytool -genkeypair -v -keystore keystore/release.jks -keyalg RSA -keysize 2048 -validity 10000 -alias profpay
+```
+---
+### Создание .env файла
+```
+KEYSTORE_FILE=keystore/release.jks
+KEYSTORE_PASSWORD=ваш_пароль
 KEY_ALIAS=profpay
-KEY_PASSWORD=password_key
+KEY_PASSWORD=ваш_пароль
 ```
-
-### 🧩 3. Сборка проекта через Docker
-Выполните следующую команду из корневого каталога проекта:
-
-```bash
-sudo docker build -f docker/Dockerfile.release -t wallet-builder .
-```
-
-### 🧩 4. Извлечение итогового APK
-После завершения сборки извлеките сгенерированный .apk из контейнера:
+---
+### Сборка через Docker
 
 ```bash
-docker run --rm -v $(pwd):/out wallet-builder cp /app/app-release.apk /out/
+docker build -f docker/Dockerfile.release -t profpay-builder .
+docker run --rm -v $(pwd)/build-output:/out profpay-builder cp /app/app-release.apk /out/
 ```
 
-Подписанный файл `app-release.apk` появится в вашем текущем каталоге проекта:
+---
+
+### Локальная разработка
+```bash
+./gradlew assembleDebug
+./gradlew assembleRelease
+./gradlew test
+./gradlew detekt ktlintCheck
 ```
-./app-release.apk
-```
+
+---
+## Безопасность
+
+- PIN-код с биометрической разблокировкой
+- Приватные ключи шифруются через Android Keystore
+- Автоблокировка при сворачивании приложения
+- Отсутствие логирования чувствительных данных
+- Обфускация кода через ProGuard/R8
+- Резервное копирование отключено
+
+## Участие в разработке
+
+1. Сделай форк репозитория
+2. Создай feature-ветку
+3. Запусти тесты и ktlintFormat
+4. Создай pull request

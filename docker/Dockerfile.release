@@ -1,32 +1,80 @@
+# ============================================
+# Stage 1: Android Build Environment
+# ============================================
 FROM gradle:8.11.1-jdk17 AS builder
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl git unzip wget
+# Install required tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    unzip \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
+# Setup Android SDK
 ENV ANDROID_SDK_ROOT=/sdk
+ENV ANDROID_HOME=/sdk
+
 RUN mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools" \
     && cd "$ANDROID_SDK_ROOT/cmdline-tools" \
-    && wget --https-only --max-redirect=0 "https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip" -O commandlinetools.zip \
+    && wget --https-only --max-redirect=0 \
+        "https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip" \
+        -O commandlinetools.zip \
     && unzip commandlinetools.zip \
     && rm commandlinetools.zip \
     && mv cmdline-tools latest
 
 ENV PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH
 
-# Принимаем лицензии
+# Accept licenses
 RUN yes | sdkmanager --licenses
 
-RUN sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+# Install required SDK components (matching your compileSdk=36, targetSdk=35)
+RUN sdkmanager \
+    "platform-tools" \
+    "platforms;android-35" \
+    "platforms;android-36" \
+    "build-tools;35.0.0"
 
+# Copy project files
 COPY . .
 
-RUN ./gradlew clean assembleRelease -x lintVitalAnalyzeRelease --no-daemon
+# Build arguments for signing
+ARG KEYSTORE_FILE=keystore/release.jks
+ARG KEYSTORE_PASSWORD
+ARG KEY_ALIAS
+ARG KEY_PASSWORD
 
+# Set environment variables for Gradle
+ENV KEYSTORE_FILE=$KEYSTORE_FILE
+ENV KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD
+ENV KEY_ALIAS=$KEY_ALIAS
+ENV KEY_PASSWORD=$KEY_PASSWORD
+
+# Grant execute permission for gradlew
+RUN chmod +x ./gradlew
+
+# Build Release APK
+RUN ./gradlew clean assembleRelease \
+    -x lintVitalAnalyzeRelease \
+    -x test \
+    --no-daemon \
+    --parallel \
+    --build-cache
+
+# ============================================
+# Stage 2: Minimal runtime for artifact extraction
+# ============================================
 FROM eclipse-temurin:17-jre AS runtime
 
 WORKDIR /app
 
-COPY --from=builder /app/app/build/outputs/apk/release/*.apk ./app-release.apk
+# Copy the built APK
+COPY --from=builder /app/app/build/outputs/apk/release/*.apk ./
 
-CMD ["echo", "Build finished. Artifact in /app/app-release.apk"]
+# Rename to predictable name
+RUN mv *.apk app-release.apk 2>/dev/null || true
+
+CMD ["echo", "✅ Build finished! APK is at /app/app-release.apk"]
