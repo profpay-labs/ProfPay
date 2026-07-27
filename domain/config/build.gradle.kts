@@ -12,4 +12,7 @@ kotlin {
     jvmToolchain(17)
 }
 
-dependencies {}
+dependencies {
+    // Coroutines для Flow/StateFlow в domain интерфейсах
+    implementation(libs.kotlinx.coroutines.core)
+}

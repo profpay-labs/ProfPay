@@ -1,8 +1,8 @@
 package com.profpay.data.aml.repository
 
-import com.profpay.core.network.error.ApiException
-import com.profpay.core.network.error.NetworkError
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.ApiException
+import com.profpay.core.network.exception.NetworkError
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.aml.api.AmlApi
 import com.profpay.data.aml.dto.AmlPaymentResponseDto
 import com.profpay.data.aml.dto.AmlReportDto

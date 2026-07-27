@@ -1,7 +1,7 @@
 package com.profpay.data.wallet.repository
 
-import com.profpay.core.network.error.NetworkError
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.NetworkError
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.wallet.api.PublicWalletApi
 import com.profpay.data.wallet.api.WalletApi
 import com.profpay.data.wallet.dto.CentralAddressResponseDto

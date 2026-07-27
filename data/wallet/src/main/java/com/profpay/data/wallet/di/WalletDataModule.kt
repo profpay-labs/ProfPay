@@ -6,12 +6,16 @@ import com.profpay.data.wallet.api.PublicWalletApi
 import com.profpay.data.wallet.api.WalletApi
 import com.profpay.data.wallet.local.ActiveWalletManagerImpl
 import com.profpay.data.wallet.repository.ReissueCentralAddressRepositoryImpl
+import com.profpay.data.wallet.repository.WalletCreationRepositoryImpl
+import com.profpay.data.wallet.repository.WalletGenerationRepositoryImpl
 import com.profpay.data.wallet.repository.WalletRepositoryImpl
 import com.profpay.data.wallet.security.PrivateKeyProviderImpl
 import com.profpay.data.wallet.security.WalletAuthProviderImpl
 import com.profpay.domain.security.PrivateKeyProvider
 import com.profpay.domain.wallet.ActiveWalletManager
 import com.profpay.domain.wallet.repository.ReissueCentralAddressRepository
+import com.profpay.domain.wallet.repository.WalletCreationRepository
+import com.profpay.domain.wallet.repository.WalletGenerationRepository
 import com.profpay.domain.wallet.repository.WalletRepository
 import dagger.Binds
 import dagger.Module
@@ -43,6 +47,18 @@ abstract class WalletDataModule {
     @Binds
     @Singleton
     abstract fun bindReissueCentralAddressRepository(impl: ReissueCentralAddressRepositoryImpl): ReissueCentralAddressRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWalletGenerationRepository(
+        impl: WalletGenerationRepositoryImpl
+    ): WalletGenerationRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWalletCreationRepository(
+        impl: WalletCreationRepositoryImpl
+    ): WalletCreationRepository
 
     companion object {
 

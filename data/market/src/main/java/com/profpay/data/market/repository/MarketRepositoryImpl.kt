@@ -1,6 +1,6 @@
 package com.profpay.data.market.repository
 
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.market.api.BinanceApi
 import com.profpay.data.market.api.CoinGeckoApi
 import com.profpay.data.market.dto.BinancePriceDto

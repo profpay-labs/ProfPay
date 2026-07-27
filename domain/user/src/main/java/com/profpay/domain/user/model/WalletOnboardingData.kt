@@ -32,6 +32,6 @@ data class CentralAddress(
 data class SotAddress(
     val address: String,
     val pubKey: String,
-    val index: Int,
+    val index: Byte,
     val derivationIndex: Int,
 )

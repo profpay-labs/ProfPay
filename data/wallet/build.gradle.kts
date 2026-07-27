@@ -29,14 +29,22 @@ kotlin {
 
 dependencies {
     // Modules
+    implementation(project(":core:common"))
     implementation(project(":core:network"))
     implementation(project(":core:database"))
     implementation(project(":core:security"))
     implementation(project(":core:tron"))
     implementation(project(":core:crypto"))
+    implementation(project(":core:network"))
+    implementation(project(":core:security"))
 
+    implementation(project(":domain:user"))
     implementation(project(":domain:wallet"))
     implementation(project(":domain:security"))
+
+    // Room - нужно для доступа к AppDatabase
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
 
     // Hilt
     implementation(libs.hilt.android)

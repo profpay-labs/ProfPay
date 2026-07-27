@@ -1,7 +1,7 @@
 package com.profpay.data.user.repository
 
-import com.profpay.core.network.error.NetworkError
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.NetworkError
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.user.api.PublicUserApi
 import com.profpay.data.user.api.UserApi
 import com.profpay.data.user.dto.CheckPermissionsRequestDto

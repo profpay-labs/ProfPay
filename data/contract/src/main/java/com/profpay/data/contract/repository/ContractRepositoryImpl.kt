@@ -1,7 +1,7 @@
 package com.profpay.data.contract.repository
 
-import com.profpay.core.network.error.NetworkError
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.NetworkError
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.contract.api.ContractApi
 import com.profpay.data.contract.dto.response.CallContractResponseDto
 import com.profpay.data.contract.dto.response.CreateDealResponseDto

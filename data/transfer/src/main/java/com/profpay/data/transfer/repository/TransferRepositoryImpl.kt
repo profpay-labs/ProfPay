@@ -1,7 +1,7 @@
 package com.profpay.data.transfer.repository
 
-import com.profpay.core.network.error.NetworkError
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.NetworkError
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.transfer.api.TransferApi
 import com.profpay.data.transfer.dto.CreateTransferResponseDto
 import com.profpay.data.transfer.dto.EstimateCommissionResponseDto

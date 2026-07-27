@@ -14,4 +14,6 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlinx.coroutines.core)
+    // Для @Inject аннотации (легковесная зависимость, без Android)
+    implementation(libs.javax.inject)
 }

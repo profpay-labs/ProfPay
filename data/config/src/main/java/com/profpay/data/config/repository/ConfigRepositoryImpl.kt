@@ -1,7 +1,7 @@
 package com.profpay.data.config.repository
 
-import com.profpay.core.network.error.NetworkError
-import com.profpay.core.network.error.safeApiCall
+import com.profpay.core.network.exception.NetworkError
+import com.profpay.core.network.exception.safeApiCall
 import com.profpay.data.config.api.ConfigApi
 import com.profpay.data.config.dto.FeeConfigurationDto
 import com.profpay.data.config.mapper.toDomain
