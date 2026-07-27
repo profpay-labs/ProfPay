@@ -1,4 +1,4 @@
-package com.profpay.wallet.ui.shared
+package com.profpay.wallet.presentation.ui.shared
 
 import android.content.Context
 import android.content.SharedPreferences

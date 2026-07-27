@@ -1,4 +1,4 @@
-package com.profpay.wallet.ui.shared.utils
+package com.profpay.wallet.presentation.ui.shared.utils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

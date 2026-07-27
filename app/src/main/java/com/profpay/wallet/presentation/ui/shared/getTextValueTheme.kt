@@ -1,4 +1,4 @@
-package com.profpay.wallet.ui.shared
+package com.profpay.wallet.presentation.ui.shared
 
 fun getTextValueTheme(themeSharedInt: Int): String {
     var colorTheme = ""
