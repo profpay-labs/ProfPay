@@ -11,6 +11,6 @@ data class WalletAddressLocal(
     val address: String,
     val publicKey: String,
     val isGeneralAddress: Boolean,
-    val sotIndex: Int,
+    val sotIndex: Byte,
     val sotDerivationIndex: Int,
 )

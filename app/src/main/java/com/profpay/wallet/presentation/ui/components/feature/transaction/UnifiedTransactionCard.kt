@@ -43,7 +43,7 @@ fun UnifiedTransactionCard(
         TransactionCardType.INFO ->
             CardHistoryTransactionsFeature(
                 onClick = {
-                    sharedPref.edit { putLong("transaction_id", transaction.transactionId!!) }
+                    sharedPref.edit { putLong("transaction_id", transaction.transactionId) }
                     goToTXDetailsScreen()
                 },
                 paintIconId = currentTokenName.paintIconId,

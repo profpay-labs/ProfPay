@@ -5,13 +5,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.profpay.wallet.ui.navigation.Route
-import com.profpay.wallet.ui.screens.createOrRecoveryWallet.CreateNewWalletScreen
-import com.profpay.wallet.ui.screens.createOrRecoveryWallet.CreateOrRecoverWalletScreen
-import com.profpay.wallet.ui.screens.createOrRecoveryWallet.CreatedWalletAddingScreen
-import com.profpay.wallet.ui.screens.createOrRecoveryWallet.RecoverWalletScreen
-import com.profpay.wallet.ui.screens.createOrRecoveryWallet.RecoveringWalletAddingScreen
-import com.profpay.wallet.ui.screens.createOrRecoveryWallet.SeedPhraseConfirmationScreen
+import com.profpay.wallet.presentation.ui.navigation.Route
+import com.profpay.wallet.presentation.ui.screens.createOrRecoveryWallet.CreateNewWalletScreen
+import com.profpay.wallet.presentation.ui.screens.createOrRecoveryWallet.CreateOrRecoverWalletScreen
+import com.profpay.wallet.presentation.ui.screens.createOrRecoveryWallet.CreatedWalletAddingScreen
+import com.profpay.wallet.presentation.ui.screens.createOrRecoveryWallet.RecoverWalletScreen
+import com.profpay.wallet.presentation.ui.screens.createOrRecoveryWallet.RecoveringWalletAddingScreen
+import com.profpay.wallet.presentation.ui.screens.createOrRecoveryWallet.SeedPhraseConfirmationScreen
 
 fun NavGraphBuilder.onboardingNavGraph(navController: NavController) {
     navigation<Route.OnboardingGraph>(

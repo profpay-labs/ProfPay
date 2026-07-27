@@ -16,7 +16,7 @@ object AddressMapper {
         address = address,
         publicKey = publicKey,
         isGeneralAddress = isGeneralAddress,
-        sotIndex = sotIndex.toInt(),
+        sotIndex = sotIndex,
         sotDerivationIndex = sotDerivationIndex,
     )
 
@@ -27,7 +27,7 @@ object AddressMapper {
         address = address,
         publicKey = publicKey,
         isGeneralAddress = isGeneralAddress,
-        sotIndex = sotIndex.toByte(),
+        sotIndex = sotIndex,
         sotDerivationIndex = sotDerivationIndex,
     )
 

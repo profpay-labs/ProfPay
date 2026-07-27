@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.profpay.wallet.R
-import com.profpay.wallet.ui.shared.sharedPref
+import com.profpay.wallet.presentation.ui.shared.sharedPref
 
 @Composable
 fun getBottomPadding(): Float {

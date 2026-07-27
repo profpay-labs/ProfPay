@@ -17,11 +17,11 @@ import com.profpay.domain.transfer.repository.TransferRepository
 import com.profpay.domain.user.repository.local.ProfileLocalRepository
 import com.profpay.domain.wallet.model.local.AddressWithTokensLocal
 import com.profpay.domain.wallet.repository.local.AddressLocalRepository
+import com.profpay.wallet.presentation.ui.feature.wallet.send.bottomsheet.ModelTransferFromBS
 import com.profpay.wallet.presentation.viewmodel.dto.TokenName
 import com.profpay.wallet.presentation.viewmodel.dto.transfer.CommissionUiState
 import com.profpay.wallet.presentation.viewmodel.dto.transfer.TransferErrorMapper
 import com.profpay.wallet.presentation.viewmodel.dto.transfer.TransferUiEvent
-import com.profpay.wallet.ui.feature.wallet.send.bottomsheet.ModelTransferFromBS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineDispatcher

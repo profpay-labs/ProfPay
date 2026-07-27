@@ -11,8 +11,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.profpay.wallet.ui.app.theme.BackgroundIcon
-import com.profpay.wallet.ui.app.theme.transparent
+import com.profpay.wallet.presentation.ui.theme.BackgroundIcon
+import com.profpay.wallet.presentation.ui.theme.transparent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

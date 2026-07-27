@@ -10,7 +10,7 @@ data class SotAddressDto(
     @SerialName("pubKey")
     val pubKey: String,
     @SerialName("index")
-    val index: Int,
+    val index: Byte,
     @SerialName("derivationIndex")
     val derivationIndex: Int,
 )

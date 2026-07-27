@@ -20,7 +20,7 @@ object WalletGenerationMapper {
                 GeneratedWalletData.GeneratedAddress(
                     address = addr.address,
                     publicKey = addr.publicKey,
-                    sotIndex = addr.indexSot.toInt(),
+                    sotIndex = addr.indexSot,
                     derivationIndex = addr.indexDerivationSot,
                 )
             }
@@ -34,7 +34,7 @@ object WalletGenerationMapper {
                 RecoveredAddressData.AddressInfo(
                     address = addr.address,
                     publicKey = addr.publicKey,
-                    sotIndex = addr.indexSot.toInt(),
+                    sotIndex = addr.indexSot,
                     derivationIndex = addr.indexDerivationSot,
                 )
             }
@@ -48,7 +48,7 @@ object WalletGenerationMapper {
                 RecoveredAddressData.AddressInfo(
                     address = addr.address,
                     publicKey = addr.publicKey,
-                    sotIndex = addr.indexSot.toInt(),
+                    sotIndex = addr.indexSot,
                     derivationIndex = addr.indexDerivationSot,
                 )
             }
