@@ -20,3 +20,4 @@ gradle.properties
 /.gradle/config.properties
 /.gradle/file-system.probe
 .env
+sentry.properties
