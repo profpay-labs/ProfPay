@@ -126,7 +126,7 @@ android {
         applicationId = "com.profpay.wallet"
         minSdk = 29
         targetSdk = 35
-        versionCode = 1
+        versionCode = 20
 
 //        MAJOR: Внесение изменений, ломающих обратную совместимость.
 //        MINOR: Добавление новых функций без нарушения совместимости.
