@@ -111,19 +111,71 @@
         <!-- End Pushy Declarations -->
 
         <!-- Required: set your sentry.io project identifier (DSN) -->
-        <meta-data android:name="io.sentry.dsn" android:value="https://c17b4724ee144617dbfaf4fd0688af5d@sentry.profpay-services.com/6" />
+        <meta-data android:name="io.sentry.dsn" android:value="https://551765a9b0797f667db3d6aeb4f63eb7@sentry.profpay-services.com/2" />
 
-        <!-- enable automatic breadcrumbs for user interactions (clicks, swipes, scrolls) -->
-        <meta-data android:name="io.sentry.traces.user-interaction.enable" android:value="true" />
-        <!-- enable screenshot for crashes -->
-        <meta-data android:name="io.sentry.attach-screenshot" android:value="false" />
-        <!-- enable view hierarchy for crashes -->
-        <meta-data android:name="io.sentry.attach-view-hierarchy" android:value="true" />
+        <!-- Никогда автоматически не отправляем PII, заголовки и cookies -->
+        <meta-data
+            android:name="io.sentry.send-default-pii"
+            android:value="false"
+            />
 
-        <!-- enable the performance API by setting a sample-rate, adjust in production env -->
-        <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />
-        <meta-data android:name="io.sentry.traces.user-interaction.enable" android:value="true" />
-        <meta-data android:name="io.sentry.breadcrumbs.user-interaction" android:value="true" />
+        <!-- Трассировка пользовательских нажатий -->
+        <meta-data
+            android:name="io.sentry.traces.user-interaction.enable"
+            android:value="true"
+            />
+
+        <!-- Breadcrumbs: на какой экран/кнопку нажимал пользователь -->
+        <meta-data
+            android:name="io.sentry.breadcrumbs.user-interaction"
+            android:value="true"
+            />
+
+        <!-- Скриншоты при падении запрещены -->
+        <meta-data
+            android:name="io.sentry.attach-screenshot"
+            android:value="false"
+            />
+
+        <!-- Иерархию экранов для кошелька лучше не отправлять -->
+        <meta-data
+            android:name="io.sentry.attach-view-hierarchy"
+            android:value="false"
+            />
+
+        <!-- Отправлять 10% performance-транзакций -->
+        <meta-data
+            android:name="io.sentry.traces.sample-rate"
+            android:value="0.1"
+            />
+
+        <!-- Профилирование в production пока выключено -->
+        <meta-data
+            android:name="io.sentry.traces.profiling.session-sample-rate"
+            android:value="0.0"
+            />
+
+        <meta-data
+            android:name="io.sentry.traces.profiling.start-on-app-start"
+            android:value="false"
+            />
+
+        <!-- Session Replay для криптокошелька выключен -->
+        <meta-data
+            android:name="io.sentry.session-replay.on-error-sample-rate"
+            android:value="0.0"
+            />
+
+        <meta-data
+            android:name="io.sentry.session-replay.session-sample-rate"
+            android:value="0.0"
+            />
+
+        <!-- Структурированные логи пока не отправляем -->
+        <meta-data
+            android:name="io.sentry.logs.enabled"
+            android:value="false"
+            />
     </application>
 
 </manifest>

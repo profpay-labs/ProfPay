@@ -7,7 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     kotlin("plugin.serialization") version "2.3.21"
-    id("io.sentry.android.gradle") version "6.14.0"
+    id("io.sentry.android.gradle") version "6.16.0"
     id("org.jetbrains.kotlin.plugin.compose") version "2.2.10"
     id("dev.detekt") version "2.0.0-alpha.0"
     id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
